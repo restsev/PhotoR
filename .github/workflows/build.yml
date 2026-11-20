@@ -17,16 +17,11 @@ jobs:
         with:
           packages: ''
       - name: Install Android 17 SDK
-        run: |
-          sdkmanager "platforms;android-37.0" "build-tools;37.0.0"
-          rm -rf "$ANDROID_HOME/platforms/android-37"
-          cp -a "$ANDROID_HOME/platforms/android-37.0" "$ANDROID_HOME/platforms/android-37"
-          sed -i 's#platforms;android-37.0#platforms;android-37#g' "$ANDROID_HOME/platforms/android-37/source.properties"
-          test -f "$ANDROID_HOME/platforms/android-37/android.jar"
+        run: sdkmanager "platforms;android-37.0" "build-tools;37.0.0"
       - name: Install Gradle
         uses: gradle/actions/setup-gradle@v4
         with:
-          gradle-version: '8.13'
+          gradle-version: '9.3.1'
       - name: Build debug APK
         run: gradle --no-daemon assembleDebug
       - name: Upload APK
