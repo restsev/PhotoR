@@ -21,6 +21,7 @@ jobs:
           sdkmanager "platforms;android-37.0" "build-tools;37.0.0"
           rm -rf "$ANDROID_HOME/platforms/android-37"
           cp -a "$ANDROID_HOME/platforms/android-37.0" "$ANDROID_HOME/platforms/android-37"
+          sed -i 's#platforms;android-37.0#platforms;android-37#g' "$ANDROID_HOME/platforms/android-37/source.properties"
           test -f "$ANDROID_HOME/platforms/android-37/android.jar"
       - name: Install Gradle
         uses: gradle/actions/setup-gradle@v4
