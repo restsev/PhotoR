@@ -19,9 +19,9 @@ jobs:
       - name: Install Android 17 SDK
         run: |
           sdkmanager "platforms;android-37.0" "build-tools;37.0.0"
-          if [ -d "$ANDROID_HOME/platforms/android-37.0" ] && [ ! -e "$ANDROID_HOME/platforms/android-37" ]; then
-            mv "$ANDROID_HOME/platforms/android-37.0" "$ANDROID_HOME/platforms/android-37"
-          fi
+          rm -rf "$ANDROID_HOME/platforms/android-37"
+          cp -a "$ANDROID_HOME/platforms/android-37.0" "$ANDROID_HOME/platforms/android-37"
+          test -f "$ANDROID_HOME/platforms/android-37/android.jar"
       - name: Install Gradle
         uses: gradle/actions/setup-gradle@v4
         with:
